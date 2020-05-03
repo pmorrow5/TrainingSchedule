@@ -2,7 +2,7 @@ from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User, Post
 from app import app, db
-from app.forms import LoginForm, RegistrationForm, EditProfileForm, PostForm
+from app.forms import LoginForm, RegistrationForm, EditProfileForm, PostForm, ProgramForm
 from werkzeug.urls import url_parse
 from datetime import datetime
 
@@ -29,6 +29,12 @@ def index():
     return render_template('index.html', title='Home', form=form,
                            posts=posts.items, next_url=next_url,
                            prev_url=prev_url)
+
+# PROGRAM PAGE
+@app.route('/program')
+@login_required
+def program():
+    return render_template("program.html", title='Program')
 
 # EXPLORE PAGE
 @app.route('/explore')
